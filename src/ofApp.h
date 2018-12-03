@@ -67,7 +67,10 @@ class ofApp : public ofBaseApp{
                 ofParameter <int> fHeadPositionY;
 
                 ofParameter <bool> fTorqueControl;
-                ofParameter <bool> fMotorsEnabled;
+                ofParameter <bool> fbMotorsEnabled;
+                ofParameter <bool> fbDrawCloud;
+                ofParameter <bool> fbFindHead;
+                ofParameter <bool> fbTrackHead;
 
                 ofxPanel gui;
 

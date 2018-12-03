@@ -44,8 +44,10 @@ void ofApp::setup(){
         fHeadPositionControl.add(fHeadPositionY.set("Y",384,0,768));
 
         fBooleanControls.setName("Controls");
-        fBooleanControls.add(fMotorsEnabled.set("Motors enabled",false));
-        //fMotorsEnabled.addListener(this,&ofApp::enableMotors);
+        fBooleanControls.add(fbMotorsEnabled.set("Motors enabled",false));
+        fBooleanControls.add(fbDrawCloud.set("Draw Cloud",false));
+        fBooleanControls.add(fbFindHead.set("Find head",false));
+        fBooleanControls.add(fbTrackHead.set("Track head",false));
 
         fGlobalControls.add(fAngleControl1);
         fGlobalControls.add(fAngleControl2);
