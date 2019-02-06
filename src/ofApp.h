@@ -25,6 +25,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+                void standUp();
+                void goToRest();
 
 		void loadConfiguration(const std::string &fileName);
 
@@ -50,6 +52,8 @@ class ofApp : public ofBaseApp{
                 ofParameter <float> fAngleServo1;
                 ofParameter <int> fMinServo1;
                 ofParameter <int> fMaxServo1;
+                ofParameter <int> fSpeedServo1;
+
                 ofParameter <float> fAngleServo2;
                 ofParameter <int> fMinServo2;
                 ofParameter <int> fMaxServo2;
@@ -62,6 +66,8 @@ class ofApp : public ofBaseApp{
                 ofParameter <float> fAngleServo5;
                 ofParameter <int> fMinServo5;
                 ofParameter <int> fMaxServo5;
+                ofParameter <int> fServo2Temp;
+                ofParameter <int> fServo3Temp;
 
                 ofParameter <int> fHeadPositionX;
                 ofParameter <int> fHeadPositionY;
@@ -71,6 +77,15 @@ class ofApp : public ofBaseApp{
                 ofParameter <bool> fbDrawCloud;
                 ofParameter <bool> fbFindHead;
                 ofParameter <bool> fbTrackHead;
+
+                ofParameterGroup fLedsControl;
+                ofParameter <int> fRComponentLedValue;
+                ofParameter <int> fVComponentLedValue;
+                ofParameter <int> fBComponentLedValue;
+                ofParameter <int> fBrightnessLedValue;
+                ofParameter <bool> fbEnableExpression;
+                ofParameter <int> fLedExpressionValue;
+
 
                 ofxPanel gui;
 

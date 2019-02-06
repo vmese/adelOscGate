@@ -1,5 +1,5 @@
 <oscParams>
-	<adelIP>192.168.2.120</adelIP>
+	<adelIP>127.0.0.1</adelIP>
 	<adelListeningPort>6669</adelListeningPort>
 </oscParams>
 
@@ -16,34 +16,34 @@
         <name>servo2</name>
         <id>2</id>
 	<pinNb>10</pinNb>
-        <min>10</min>
-        <max>477</max>
-        <initialPos>10</initialPos>
+        <min>40</min>
+        <max>570</max>
+        <initialPos>40</initialPos>
 </servo>
 
 <servo>
         <name>servo3</name>
         <id>3</id>
-	<pinNb>10</pinNb>
-        <min>540</min>
-        <max>757</max>
-        <initialPos>540</initialPos>
+	<pinNb>11</pinNb>
+        <min>170</min>
+        <max>1024</max>
+        <initialPos>170</initialPos>
 </servo>
 
 <servo>
         <name>servo4</name>
         <id>4</id>
-	<pinNb>10</pinNb>
-	<min>380</min>
-        <max>530</max>
-	<initialPos>380</initialPos>
+	<pinNb>12</pinNb>
+	<min>105</min>
+        <max>512</max>
+	<initialPos>155</initialPos>
 </servo>
 
 <servo>
         <name>servo5</name>
         <id>5</id>
 	<pinNb>10</pinNb>
-        <min>380</min>
-        <max>620</max>
-        <initialPos>500</initialPos>
+        <min>390</min>
+        <max>630</max>
+        <initialPos>512</initialPos>
 </servo>
