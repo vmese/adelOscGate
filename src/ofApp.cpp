@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+        ofBackground(255, 255, 255);
 
         loadConfiguration("settings.xml");
 
@@ -79,17 +79,45 @@ void ofApp::setup(){
         // by now needs to pass the gui parameter groups since the panel internally creates it's own group
         parametersSync1.setup((ofParameterGroup&)gui.getParameter(),6668,fadelControllerIP,fadelControllerListeningPort);
         parametersSync2.setup((ofParameterGroup&)gui.getParameter(),6666,"localhost",6667);
+        //parametersSync3.setup((ofParameterGroup&)gui.getParameter(),6670,fAbletonIP,fAbletonListeningPort);
+        parametersSync3.setup(fAngleControl4,6670,fAbletonIP,fAbletonListeningPort);
 	ofSetVerticalSync(true);
+
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
+        //fBrightnessLedValue = audioInScaledVol * 255.0 ;
+
+//        if (fAngleServo2<0.7 && fAngleServo3>0.5)
+//        {
+//            fMaxServo3 = fServosMins[2]+1;
+//        }
+//        else
+//        {
+//            fMaxServo3 = fServosMax[2];
+//        }
+
+//        if (fAngleServo3>0.5)
+//        {
+//            fMinServo2 = fServosMax[1]-1;
+//        }
+//        else
+//        {
+//            fMinServo2 = fServosMins[1];
+//        }
+
         parametersSync1.update();
         parametersSync2.update();
+        parametersSync3.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
+        /* --------- Main window  --------------------- */
 
         gui.draw();
 
@@ -107,8 +135,12 @@ void ofApp::loadConfiguration(const std::string &fileName)
     }
 
     // find address and port for Osc communication
-    std::string adelIP= fXMLReader.getValue("oscParams::adelIP", "");
-    int port = fXMLReader.getValue("oscParams::adelListeningPort", 0);
+    std::string adelIP= fXMLReader.getValue("oscParams1::adelIP", "");
+    int port = fXMLReader.getValue("oscParams1::adelListeningPort", 0);
+
+
+    ofLogNotice() << "adel IP = " << adelIP ;
+    ofLogNotice() << "adel port =" << port;
 
     if (adelIP == "" || port == 0)
     {
@@ -118,6 +150,22 @@ void ofApp::loadConfiguration(const std::string &fileName)
     {
         fadelControllerIP = adelIP ;
         fadelControllerListeningPort = port;
+    }
+
+    std::string abletonIP = fXMLReader.getValue("oscParams2::abletonIP", "");
+    port = fXMLReader.getValue("oscParams2::abletonListeningPort", 0);
+
+    ofLogNotice() << "IP = " << abletonIP ;
+    ofLogNotice() << "port =" << port;
+
+    if (abletonIP == "" || port == 0)
+    {
+        ofLogError() << "no IP address and port found for Osc communication with ableton";
+    }
+    else
+    {
+        fAbletonIP = abletonIP ;
+        fAbletonListeningPort = port;
     }
 
     // find servos names
@@ -335,7 +383,7 @@ void ofApp::standUp()
      //fAngleServo1.set(0.5);
      fAngleServo2.set(1.0);
      fAngleServo3.set(1.0);
-     fAngleServo4.set(0.6);
+     fAngleServo4.set(0.0);
      fAngleServo5.set(0.5);
 
 
@@ -350,8 +398,8 @@ void ofApp::goToRest()
     fAngleServo4.set(0.0);
     fAngleServo5.set(0.5);
     fbTrackHead = false;
-
 }
+
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 

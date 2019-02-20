@@ -6,6 +6,11 @@
 #include "ofParameterGroup.h"
 #include "ofParameter.h"
 #include "ofxXmlSettings.h"
+#include "ofApp.h"
+
+
+#define PROJECTOR_RESOLUTION_X 640 //1920 //640
+#define PROJECTOR_RESOLUTION_Y 480 //1080 //480
 
 class ofApp : public ofBaseApp{
 
@@ -32,6 +37,7 @@ class ofApp : public ofBaseApp{
 
                 ofxOscParameterSync parametersSync1;
                 ofxOscParameterSync parametersSync2;
+                ofxOscParameterSync parametersSync3;
 
                 //Control Params
                 ofParameterGroup fGlobalControls;
@@ -86,8 +92,8 @@ class ofApp : public ofBaseApp{
                 ofParameter <bool> fbEnableExpression;
                 ofParameter <int> fLedExpressionValue;
 
-
                 ofxPanel gui;
+                //shared_ptr<GuiApp> gui;
 
 		// Servos params
         	ofxXmlSettings fXMLReader;
@@ -101,5 +107,7 @@ class ofApp : public ofBaseApp{
                 std::string fadelControllerIP;
                 int fadelControllerListeningPort;
 
+                std::string fAbletonIP;
+                int fAbletonListeningPort;
 
 };
