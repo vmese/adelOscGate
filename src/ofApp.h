@@ -7,17 +7,18 @@
 #include "ofParameter.h"
 #include "ofxXmlSettings.h"
 #include "ofApp.h"
-
+#include "ofxMidi.h"
 
 #define PROJECTOR_RESOLUTION_X 640 //1920 //640
 #define PROJECTOR_RESOLUTION_Y 480 //1080 //480
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	public:
 		void setup();
 		void update();
 		void draw();
+                void exit();
 
 		void keyPressed  (int key);
 		void keyReleased(int key);
@@ -34,6 +35,8 @@ class ofApp : public ofBaseApp{
                 void goToRest();
 
 		void loadConfiguration(const std::string &fileName);
+
+                void connectToAbleton(bool &state);
 
                 ofxOscParameterSync parametersSync1;
                 ofxOscParameterSync parametersSync2;
@@ -107,7 +110,27 @@ class ofApp : public ofBaseApp{
                 std::string fadelControllerIP;
                 int fadelControllerListeningPort;
 
+                ofParameterGroup fAbletonControls;
+                ofParameterGroup fAbletonConnectionControls;
+                ofParameter<float> fAbletonParam1;
+                ofParameter<float> fAbletonParam2;
+                ofParameter<float> fAbletonParam3;
+                ofParameter<float> fAbletonParam4;
+                ofParameter<float> fAbletonParam5;
+                ofParameter <bool> fbConnectToAbleton;
                 std::string fAbletonIP;
                 int fAbletonListeningPort;
+
+                //midi
+                void newMidiMessage(ofxMidiMessage& eventArgs);
+
+                ofxMidiIn midiIn;
+                std::vector<ofxMidiMessage> midiMessages;
+                std::size_t maxMessages = 5; //< max number of messages to keep track of
+                int midiMessagesCount;
+                std::vector<int> midiVals;
+                int lastMidiVal;
+                int minMidiPitch, maxMidiPitch;
+                bool midiControl1Enabled,midiControl2Enabled,midiControl3Enabled,midiControl4Enabled,midiControl5Enabled;
 
 };

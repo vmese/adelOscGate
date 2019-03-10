@@ -1,7 +1,14 @@
-<oscParams>
-	<adelIP>127.0.0.1</adelIP>
+<oscParams1>
+	<adelIP>192.168.2.2</adelIP>
 	<adelListeningPort>6669</adelListeningPort>
-</oscParams>
+</oscParams1>
+
+
+<oscParams2>
+	<abletonIP>192.168.2.4</abletonIP>
+	<abletonListeningPort>6671</abletonListeningPort>
+</oscParams2>
+
 
 <servo>
         <name>servo1</name>
@@ -16,7 +23,7 @@
         <name>servo2</name>
         <id>2</id>
 	<pinNb>10</pinNb>
-        <min>40</min>
+        <min>1</min>
         <max>570</max>
         <initialPos>40</initialPos>
 </servo>
@@ -25,7 +32,7 @@
         <name>servo3</name>
         <id>3</id>
 	<pinNb>11</pinNb>
-        <min>170</min>
+        <min>250</min>
         <max>1024</max>
         <initialPos>170</initialPos>
 </servo>

@@ -1,3 +1,5 @@
 ofxOsc
 ofxGui
 ofxXmlSettings
+ofxSecondWindow
+ofxMidi
