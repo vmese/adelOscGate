@@ -25,7 +25,7 @@ void ofApp::setup(){
         fMinMaxControl1.setName("Min/Max Servo 1");
         fMinMaxControl1.add(fMinServo1.set("Min",fServosMins[0],1.0,1024.0));
         fMinMaxControl1.add(fMaxServo1.set("Max",fServosMax[0],1.0,1024.0));
-        fMinMaxControl1.add(fSpeedServo1.set("Speed",40,40,256));
+        fMinMaxControl1.add(fSpeedServo1.set("Speed",40,40,512));
 
         fAngleControl2.setName("Servo 2" );
         fAngleControl2.add(fAngleServo2.set("angle",0.5,0.0,1.0));
@@ -115,10 +115,12 @@ void ofApp::setup(){
         midiControl4Enabled = false;
         midiControl5Enabled = false;
 
-
+        //sound
+        //fSoundPlayer.load("sounds/move.mp3");
         // by now needs to pass the gui parameter groups since the panel internally creates it's own group
         parametersSync1.setup((ofParameterGroup&)gui.getParameter(),6668,fadelControllerIP,fadelControllerListeningPort);
         parametersSync2.setup((ofParameterGroup&)gui.getParameter(),6666,"localhost",6667);
+        //parametersSync4.setup((ofParameterGroup&)gui.getParameter(),6669,"192.168.2.6",6669);
         //parametersSync3.setup(fAbletonControls,6670,fAbletonIP,fAbletonListeningPort);
         //parametersSync3.setup(fAngleControl4,6670,fAbletonIP,fAbletonListeningPort);
 	ofSetVerticalSync(true);
@@ -186,14 +188,15 @@ void ofApp::update(){
 
         parametersSync1.update();
         parametersSync2.update();
+        //parametersSync4.update();
 
         if (fbConnectToAbleton == true)
         {
-            fAbletonParam1 = fAngleServo1;
-            fAbletonParam2 = fAngleServo2;
-            fAbletonParam3 = fAngleServo3;
-            fAbletonParam4 = fAngleServo4;
-            fAbletonParam5 = fAngleServo5;
+            fAbletonParam1 = fBrightnessLedValue;
+            //fAbletonParam2 = fAngleServo2;
+            //fAbletonParam3 = fAngleServo3;
+            //fAbletonParam4 = fAngleServo4;
+            //fAbletonParam5 = fAngleServo5;
             parametersSync3.update();
         }
 }
@@ -243,7 +246,7 @@ void ofApp::draw(){
 
                 if(midiMsg.status == MIDI_NOTE_OFF)
                 {
-                   printf("midi note off - pitch=%i\n",midiMsg.pitch);
+                   //printf("midi note off - pitch=%i\n",midiMsg.pitch);
                    int channel = midiMsg.pitch;
                    if (channel == 49) //base
                    {
@@ -535,7 +538,7 @@ void ofApp::keyPressed(int key){
                 printf("key down pressed\n");
                 {
                     float currentVal = fAngleServo4;
-                    currentVal -=0.1;
+                    currentVal -=0.01;
                     if (currentVal<=0.0)
                     {
                         currentVal = 0.0;
@@ -549,7 +552,7 @@ void ofApp::keyPressed(int key){
             {
 
                 float currentVal = fAngleServo4;
-                currentVal +=0.1;
+                currentVal +=0.01;
                 if (currentVal>=1.0)
                 {
                     currentVal = 1.0;
@@ -562,7 +565,7 @@ void ofApp::keyPressed(int key){
             {
                 float currentVal1 = fAngleServo5;
                 float currentVal2 = fAngleServo1;
-                currentVal1 -=0.1;
+                currentVal1 -=0.01;
                 if (currentVal1<=0.0)
                 {
                     currentVal1 = 0.0;
@@ -583,7 +586,7 @@ void ofApp::keyPressed(int key){
 
                     float currentVal1 = fAngleServo5;
                     float currentVal2 = fAngleServo1;
-                    currentVal1 +=0.1;
+                    currentVal1 +=0.01;
                     if (currentVal1>=1.0)
                     {
                         currentVal1 = 1.0;
@@ -666,7 +669,13 @@ void ofApp::keyPressed(int key){
             fAngleServo3.set(currentVal2);
         }
     break;
-        break;
+
+    case 'a' :
+        {
+            bool status = fbMotorsEnabled;
+            fbMotorsEnabled = !status;
+        }
+    break;
 
         default :
             break;

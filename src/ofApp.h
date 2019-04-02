@@ -41,6 +41,7 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
                 ofxOscParameterSync parametersSync1;
                 ofxOscParameterSync parametersSync2;
                 ofxOscParameterSync parametersSync3;
+                ofxOscParameterSync parametersSync4;
 
                 //Control Params
                 ofParameterGroup fGlobalControls;
@@ -132,5 +133,8 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
                 int lastMidiVal;
                 int minMidiPitch, maxMidiPitch;
                 bool midiControl1Enabled,midiControl2Enabled,midiControl3Enabled,midiControl4Enabled,midiControl5Enabled;
+
+                //sound
+                ofSoundPlayer fSoundPlayer;
 
 };
