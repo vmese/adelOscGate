@@ -125,7 +125,6 @@ void ofApp::setup(){
         //parametersSync3.setup(fAngleControl4,6670,fAbletonIP,fAbletonListeningPort);
 	ofSetVerticalSync(true);
 
-
 }
 
 void ofApp::newMidiMessage(ofxMidiMessage& msg) {
@@ -144,7 +143,7 @@ void ofApp::connectToAbleton(bool &state)
     if (state==true)
     {
         fbConnectToAbleton = true;
-        parametersSync3.setup(fAbletonControls,6670,fAbletonIP,fAbletonListeningPort);
+        //parametersSync3.setup(fAbletonControls,6670,fAbletonIP,fAbletonListeningPort);
         printf("Connection to Ableton\n");
 
     }
@@ -197,7 +196,7 @@ void ofApp::update(){
             //fAbletonParam3 = fAngleServo3;
             //fAbletonParam4 = fAngleServo4;
             //fAbletonParam5 = fAngleServo5;
-            parametersSync3.update();
+            //parametersSync3.update();
         }
 }
 
@@ -477,7 +476,9 @@ void ofApp::loadConfiguration(const std::string &fileName)
     int nbServos = fXMLReader.getNumTags("servo");
     if (nbServos>0)
     {
+
         for(int i = 0; i < nbServos; i++)
+
         {
               fXMLReader.pushTag("servo", i);
               std::string servoName = fXMLReader.getValue("name","");
@@ -519,7 +520,7 @@ void ofApp::keyPressed(int key){
         }
         case '1' :
         {
-            fBrightnessLedValue = 255;
+            fBrightnessLedValue = 128;
             break;
         }
         case 'r' :
