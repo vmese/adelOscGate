@@ -12,7 +12,7 @@
 #define PROJECTOR_RESOLUTION_X 640 //1920 //640
 #define PROJECTOR_RESOLUTION_Y 480 //1080 //480
 
-class ofApp : public ofBaseApp, public ofxMidiListener{
+class ofApp : public ofBaseApp/*, public ofxMidiListener*/{
 
 	public:
 		void setup();
@@ -122,19 +122,18 @@ class ofApp : public ofBaseApp, public ofxMidiListener{
                 std::string fAbletonIP;
                 int fAbletonListeningPort;
 
-                //midi
-                void newMidiMessage(ofxMidiMessage& eventArgs);
+//                //midi
+//                void newMidiMessage(ofxMidiMessage& eventArgs);
 
-                ofxMidiIn midiIn;
-                std::vector<ofxMidiMessage> midiMessages;
-                std::size_t maxMessages = 5; //< max number of messages to keep track of
-                int midiMessagesCount;
-                std::vector<int> midiVals;
-                int lastMidiVal;
-                int minMidiPitch, maxMidiPitch;
-                bool midiControl1Enabled,midiControl2Enabled,midiControl3Enabled,midiControl4Enabled,midiControl5Enabled;
+//                ofxMidiIn midiIn;
+//                std::vector<ofxMidiMessage> midiMessages;
+//                std::size_t maxMessages = 5; //< max number of messages to keep track of
+//                int midiMessagesCount;
+//                std::vector<int> midiVals;
+//                int lastMidiVal;
+//                int minMidiPitch, maxMidiPitch;
+//                bool midiControl1Enabled,midiControl2Enabled,midiControl3Enabled,midiControl4Enabled,midiControl5Enabled;
 
                 //sound
                 ofSoundPlayer fSoundPlayer;
-
 };
