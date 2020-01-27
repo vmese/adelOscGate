@@ -523,6 +523,20 @@ void ofApp::keyPressed(int key){
             fBrightnessLedValue = 128;
             break;
         }
+        case '2' :
+        {
+            fAngleServo4.set(0.4);
+            fAngleServo5.set(0.0);
+            fbEnableExpression = true;
+            fBrightnessLedValue= 20;
+            break;
+        }
+        case '3' :
+        {
+            standUp();
+            fBrightnessLedValue = 0;
+            break;
+        }
         case 'r' :
         {
              goToRest();
